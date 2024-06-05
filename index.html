@@ -89,6 +89,7 @@
 <p> Enter the length of your UGS list</p>
 
 <form id="formLength">
+<input type="text" placeholder = "Enter title here" id= "page" height = 20>
 <input type="number" value = 0 id="length" name = "length">
 <input type="submit" value = "Submit" id="submit" >
 </form>
@@ -120,6 +121,8 @@
 const form = document.getElementById("formLength");
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+    // console.log(document.getElementById("page").value);
+    document.title = document.getElementById("page").value;
     const name = document.getElementById("length").value;
     
     for(let i = 0; i < name; i++){
