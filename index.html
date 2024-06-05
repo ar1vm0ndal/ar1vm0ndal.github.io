@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+/* CSS */
+.button-44 {
+  background: #e62143;
+  border-radius: 11px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-family: Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;
+  font-size: 1.15em;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 33.4929px;
+  padding: .8em 1em;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+  text-underline-offset: 1px;
+  transition: all .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  word-break: break-word;
+  border: 0;
+}
+
+.button-44:active,
+.button-44:focus {
+  border-bottom-style: none;
+  border-color: #dadada;
+  box-shadow: rgba(0, 0, 0, .3) 0 3px 3px inset;
+  outline: 0;
+}
+
+.button-44:hover {
+  border-bottom-style: none;
+  border-color: #dadada;
+}
+</style>
+</head>
+<body>
+<p> Enter the length of your UGS list</p>
+
+<form id="formLength">
+<input type="number" value = 0 id="length" name = "length">
+<input type="submit" value = "Submit" id="submit" >
+</form>
+<br>
+<br>
+
+<!-- <p>Click on the button to copy the text from the text field.</p>
+
+<input type="text" value="Class ID" id="input1">
+
+<div class="tooltip">
+<button onclick="myFunction('input1','button1')" onmouseout="outFunc()">
+  <span class="button-44" id="button1">Copy</span>
+  Copy text
+  </button>
+</div>
+
+<br><br><br>
+<input type="text" value="Class ID" id="myInput">
+<div class="tooltip">
+<button onclick="myFunction('button2')" onmouseout="outFunc()">
+  <span class="button-44" id="button2">Copy</span>
+  Copy text
+  </button>
+</div> -->
+
+
+<script>
+const form = document.getElementById("formLength");
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById("length").value;
+    
+    for(let i = 0; i < name; i++){
+        let courseID = document.createElement('input');
+        courseID.type = "text";
+        courseID.id = "course" + i.toString();
+
+        let copyButton = document.createElement('button');
+        copyButton.style.background = "lime";
+        copyButton.innerHTML = "Copy";
+        copyButton.setAttribute('data-input-id', courseID.id);
+
+        copyButton.addEventListener('click', function() {
+            let inputId = this.getAttribute('data-input-id');
+            let copyText = document.getElementById(inputId);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                this.style.background = "red";
+                console.log(this.id);
+            });
+        });
+
+        document.body.appendChild(courseID);
+        document.body.appendChild(copyButton);
+        document.body.appendChild(document.createElement("br"));
+        document.body.appendChild(document.createElement("br"));
+    }
+});
+
+
+
+
+// function copyFunction {
+//   var copyText = document.getElementById(id);
+//   copyText.select();
+//   copyText.setSelectionRange(0, 99999);
+//   navigator.clipboard.writeText(copyText.value);
+  
+//   var tooltip = document.getElementById(id);
+//   tooltip.innerHTML = "Copied: " + copyText.value;
+// }
+
+// function outFunc(id) {
+//   var tooltip = document.getElementById(id);
+//   tooltip.innerHTML = "Copy to clipboard";
+//   tooltip.style.background = "green";
+// }
+</script>
+</body>
+</html>
